@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const ProductCard = ({ id,title, amount, image, category ,addToCart}) => {
+const ProductCard = ({ id,title, amount, image, category ,addToCart,isInCart,quantity}) => {
+
+    
     return (
         <div className='bg-blue-950 rounded-md shadow-md'>
             <div className="w-full h-48 overflow-hidden rounded-t-md">
@@ -17,7 +19,12 @@ const ProductCard = ({ id,title, amount, image, category ,addToCart}) => {
                 </div >
                 <div className='flex items-center justify-between'>
                     <span className='text-gray-400'>{category}</span>
-                    <button className='bg-gray-200 text-black text-lg p-2 rounded-md hover:bg-gray-800 hover:text-white cursor-pointer' onClick={addToCart}>Add</button>
+                    {isInCart? <div className='flex items-center justify-center'>
+                        <span className='bg-gray-200 text-black font-bold text-lg p-2 rounded-md cursor-pointer'>-</span>
+                        <span className='p-2 font-bold text-lg'>{quantity}</span>
+                        <span className='bg-gray-200 text-black font-bold text-lg p-2 rounded-md cursor-pointer'>+</span>
+                    </div>: <button className='bg-gray-200 text-black text-lg p-2 rounded-md hover:bg-gray-800 hover:text-white cursor-pointer' onClick={addToCart}>Add</button>}
+                   
                 </div>
             </div>
         </div>

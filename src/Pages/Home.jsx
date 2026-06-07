@@ -46,26 +46,59 @@ const Home = () => {
       category: "accessories",
     }
   ]);
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+  const [isPresent, setIsPresent] = useState(false)
 
   useEffect(() => {
+
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (product) => {
+    setCart(prev => {
+      const existingProduct = prev.find(item => item.id === product.id);
 
-    const productWithQuantity = {
-      ...product,
-      quantity: 1,
-    };
-    setCart(prev => [...prev, productWithQuantity])
+      if (existingProduct) {
+        return prev.map(item => {
+          return item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item;
+        })
+      }
+
+      return [
+        ...prev,
+        {
+          ...product,
+          quantity: 1
+        }
+      ]
+    })
+
     toast.success(`${product.title} added to cart 🛒`);
   }
+
+  const isInCart = (productId) => {
+    return cart.some(item => item.id === productId);
+  };
+
+  const getQuantity = (productId)=>{
+    const reqProduct = cart.find(item=>item.id === productId);
+    console.log("req ",productId);
+    
+    return reqProduct.quantity;
+  }
+
+  const handleQuantity = ()=>{
+    
+  }
+
   return (
     <div className='grid grid-cols-4  gap-5 '>
       {products.map(product => {
         return (
-          <ProductCard key={product.id} id={product.id} title={product.title} amount={product.price} image={product.image} category={product.category} addToCart={() => addToCart(product)} />
+          <ProductCard key={product.id} id={product.id} title={product.title} amount={product.price} image={product.image} category={product.category} addToCart={() => addToCart(product)} isInCart={isInCart(product.id)}  quantity = {isInCart(product.id) ? getQuantity(product.id):0} />
         )
       })}
     </div>
