@@ -87,34 +87,40 @@ const Product = () => {
     }
 
     const handleQuantity = (isInc, productId, title) => {
-        setCart(prev => {
-            const existingProduct = prev.find(item => item.id === productId);
+        const existingProduct = cart.find(item => item.id === productId);
 
-            if (isInc) {
-                // inc quantity
-                return prev.map(item => {
-                    return item.id === productId ? { ...item, quantity: item.quantity + 1 } : item;
-                })
-            } else {
-                // dec quantity
-                return prev.map(item => {
-                    if (item.id === productId && item.quantity === 1) {
-                        setIsRemoved(!isRemoved);
-                        return prev.filter(item => item.id === productId)
-                    } else {
-                        return item.id === productId ? { ...item, quantity: item.quantity - 1 } : item;
-                    }
-
-                })
-            }
-        })
         if (isInc) {
-            toast.success(`${title} quantity is increased 🛒`)
-        } else {
-            isRemoved ? toast.success(`${title} is removed from cart 🛒`) : toast.success(`${title} quantity is decreased 🛒`)
+            toast.success(`${title} quantity is increased 🛒`);
 
+            setCart(prev =>
+                prev.map(item =>
+                    item.id === productId
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
+            );
+            return;
         }
-    }
+
+        if (existingProduct.quantity === 1) {
+            toast.success(`${title} is removed from cart 🛒`);
+
+            setCart(prev =>
+                prev.filter(item => item.id !== productId)
+            );
+            return;
+        }
+
+        toast.success(`${title} quantity is decreased 🛒`);
+
+        setCart(prev =>
+            prev.map(item =>
+                item.id === productId
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item
+            )
+        );
+    };
     return (
         <div className='grid grid-cols-4  gap-5 '>
             {products.map(product => {
