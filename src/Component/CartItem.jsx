@@ -1,9 +1,9 @@
 import React from 'react'
 import { MdCancel } from "react-icons/md";
-import { RiSubtractFill} from "react-icons/ri";
+import { RiSubtractFill } from "react-icons/ri";
 import { IoAdd } from "react-icons/io5";
 
-const CartItem = ({ id, title, quantity, price, image, category,handleRemove }) => {
+const CartItem = ({ id, title, quantity, price, image, category, handleRemove, handleQuantity }) => {
     return (
         <div className='bg-blue-950  flex rounded-md text-white shadow-lg'>
             <div className='w-[30%] h-32'>
@@ -20,9 +20,10 @@ const CartItem = ({ id, title, quantity, price, image, category,handleRemove }) 
 
                     <div className="flex items-center gap-2">
                         <button
-                            className="w-7 h-7 flex items-center justify-center bg-white text-black rounded cursor-pointer text-xl font-bold"
+                            className="w-7 h-7 flex items-center justify-center bg-white text-black rounded cursor-pointer text-xl font-bold" 
+                            onClick={()=>handleQuantity(id,false,title)}
                         >
-                            <RiSubtractFill/>
+                            <RiSubtractFill />
                         </button>
 
                         <span className="min-w-6 text-center font-semibold">
@@ -31,8 +32,9 @@ const CartItem = ({ id, title, quantity, price, image, category,handleRemove }) 
 
                         <button
                             className="w-7 h-7 flex items-center justify-center bg-white text-black rounded cursor-pointer"
+                            onClick={()=>handleQuantity(id,true,title)}
                         >
-                            <IoAdd/>
+                            <IoAdd />
                         </button>
                     </div>
                     <span>${price}</span>
