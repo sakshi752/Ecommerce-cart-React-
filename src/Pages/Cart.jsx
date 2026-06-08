@@ -1,9 +1,13 @@
 import React from 'react'
+import CartItem from '../Component/CartItem';
 
 const Cart = () => {
   return (
     <div>
-      cart page!
+      <div className='w-[30%]'>
+
+        <CartItem />
+      </div>
     </div>
   )
 }
