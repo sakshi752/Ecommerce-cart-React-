@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -12,24 +13,24 @@ const Header = () => {
 
       {/* Navigation Links */}
       <ul className="flex items-center gap-8 text-lg">
-        <li className="cursor-pointer hover:text-blue-400 transition-colors">
+        <Link className="cursor-pointer hover:text-blue-400 transition-colors" to={"/"}>
           Home
-        </li>
-        <li className="cursor-pointer hover:text-blue-400 transition-colors">
+        </Link>
+        <Link className="cursor-pointer hover:text-blue-400 transition-colors" to={"/product"}>
           Products
-        </li>
-        <li className="cursor-pointer hover:text-blue-400 transition-colors">
+        </Link>
+        <Link className="cursor-pointer hover:text-blue-400 transition-colors" to={"/about"}>
           About
-        </li>
-        <li className="cursor-pointer hover:text-blue-400 transition-colors">
+        </Link>
+        <Link className="cursor-pointer hover:text-blue-400 transition-colors" to={"/contact"}>
           Contact
-        </li>
+        </Link>
       </ul>
 
       {/* Button */}
-      <button className="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors">
+      <Link className="px-4 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors" to={"/cart"}>
         Cart
-      </button>
+      </Link>
     </nav>
   );
 };

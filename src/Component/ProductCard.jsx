@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const ProductCard = ({ id,title, amount, image, category ,addToCart,isInCart,quantity}) => {
+const ProductCard = ({ id,title, amount, image, category ,addToCart,isInCart,quantity,handleQuantity}) => {
 
     
     return (
@@ -20,9 +20,9 @@ const ProductCard = ({ id,title, amount, image, category ,addToCart,isInCart,qua
                 <div className='flex items-center justify-between'>
                     <span className='text-gray-400'>{category}</span>
                     {isInCart? <div className='flex items-center justify-center'>
-                        <span className='bg-gray-200 text-black font-bold text-lg p-2 rounded-md cursor-pointer'>-</span>
+                        <span className='bg-gray-200 text-black font-bold text-lg p-2 rounded-md cursor-pointer' onClick={()=>handleQuantity(false,id,title)}>-</span>
                         <span className='p-2 font-bold text-lg'>{quantity}</span>
-                        <span className='bg-gray-200 text-black font-bold text-lg p-2 rounded-md cursor-pointer'>+</span>
+                        <span className='bg-gray-200 text-black font-bold text-lg p-2 rounded-md cursor-pointer' onClick={()=>handleQuantity(true,id,title)}>+</span>
                     </div>: <button className='bg-gray-200 text-black text-lg p-2 rounded-md hover:bg-gray-800 hover:text-white cursor-pointer' onClick={addToCart}>Add</button>}
                    
                 </div>
