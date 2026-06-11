@@ -51,6 +51,10 @@ const Product = () => {
     });
     const [isRemoved, setIsRemoved] = useState(false);
 
+    useEffect(()=>{
+        localStorage.setItem("products",JSON.stringify(products))
+    },[products])
+
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);

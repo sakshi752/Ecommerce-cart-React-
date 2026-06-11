@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const ProductCard = ({ id,title, amount, image, category ,addToCart,isInCart,quantity,handleQuantity}) => {
 
     
     return (
-        <div className='bg-blue-950 rounded-md shadow-md'>
+        <Link to={`/product/${id}`} className='bg-blue-950 rounded-md shadow-md'>
             <div className="w-full h-48 overflow-hidden rounded-t-md">
                 <img
                     src={image}
@@ -27,7 +28,7 @@ const ProductCard = ({ id,title, amount, image, category ,addToCart,isInCart,qua
                    
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
