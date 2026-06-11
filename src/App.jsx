@@ -14,22 +14,22 @@ import Contact from './Pages/Contact'
 function App() {
 
   return (
-    <BrowserRouter>
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-        </Layout>
-        <Footer />
-        <ToastContainer position="top-right" autoClose={2000} />
-      </div>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //     <Layout>
+    //       <Routes>
+    //         <Route path="/" element={<Home />} />
+    //         <Route path="/about" element={<About />} />
+    //         <Route path="/product" element={<Product />} />
+    //         <Route path="/contact" element={<Contact />} />
+    //         <Route path="/cart" element={<Cart />} />
+    //       </Routes>
+    //     </Layout>
+    //     {/* <Footer /> */}
+    //     <ToastContainer position="top-right" autoClose={2000} />
+    // </BrowserRouter>
+    <>
+    
+    </>
   )
 }
 
